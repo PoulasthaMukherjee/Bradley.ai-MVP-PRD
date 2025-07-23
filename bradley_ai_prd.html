@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bradley.ai FE PRD</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .meta-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .meta-card h3 {
+            margin: 0 0 10px 0;
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .content-section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: #f3f4f6;
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+            color: #1f2937;
+            font-size: 1.5em;
+        }
+        
+        .section-content {
+            padding: 30px;
+        }
+        
+        .problem-highlight {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .opportunity-highlight {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .solution-highlight {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        tr:hover {
+            background: #f9fafb;
+        }
+        
+        .priority-p0 {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .priority-p1 {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .priority-p2 {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .workflow-diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .workflow-step {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .workflow-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 18px;
+            color: #6b7280;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tech-category {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tech-category h4 {
+            margin: 0 0 15px 0;
+            color: #1e40af;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+        
+        .value-prop {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .value-prop h3 {
+            margin: 0 0 15px 0;
+            color: #0c4a6e;
+            font-size: 18px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .metric-card h4 {
+            margin: 0 0 10px 0;
+            color: #374151;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .architecture-diagram {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .layer {
+            background: #f3f4f6;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #6366f1;
+        }
+        
+        .user-persona {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Bradley.ai™</h1>
+        <p class="subtitle">Product Requirements Document for Bradley.ai MVP</p>
+    </div>
+    
+    <div class="meta-info">
+        <div class="meta-card">
+            <h3>Author</h3>
+            <p>Poulastha Mukherjee</p>
+        </div>
+        <div class="meta-card">
+            <h3>Status</h3>
+            <p>Minimum Viable Product</p>
+        </div>
+        <div class="meta-card">
+            <h3>Updated</h3>
+            <p>22.07.2025</p>
+        </div>
+        <div class="meta-card">
+            <h3>Version</h3>
+            <p>1.0</p>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Problem</h2>
+        </div>
+        <div class="section-content">
+            <div class="problem-highlight">
+                <strong>Commercial and Industrial (C&I) businesses face massive friction when evaluating Distributed Energy Resources (DER), with traditional feasibility studies taking months and costing tens of thousands in consulting fees.</strong>
+            </div>
+            
+            <p>The current DER feasibility analysis process is fundamentally broken:</p>
+            <ul>
+                <li><strong>Time-intensive:</strong> Traditional studies require 3-6 months to produce preliminary (30%) designs</li>
+                <li><strong>Capital-intensive:</strong> Upfront consulting fees range from $25K-$100K+ before any real commitment</li>
+                <li><strong>Opaque process:</strong> "Black box" methodology with limited client visibility into analysis</li>
+                <li><strong>Manual & error-prone:</strong> Heavy reliance on manual data collection and spreadsheet-based calculations</li>
+                <li><strong>Limited comparison:</strong> Difficult to evaluate different technology and financing options side-by-side</li>
+            </ul>
+            
+            <p>This friction acts as a major barrier to DER adoption, delaying or preventing cost-saving and environmentally beneficial energy solutions from being implemented across the C&I sector.</p>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Vision & Opportunity</h2>
+        </div>
+        <div class="section-content">
+            <div class="opportunity-highlight">
+                <strong>Transform months of DER analysis into minutes of AI-powered insights, democratizing access to institutional-grade energy feasibility studies.</strong>
+            </div>
+            
+            <p>The market opportunity is substantial:</p>
+            <ul>
+                <li><strong>$280B+ DER market</strong> projected by 2030 with increasing C&I adoption</li>
+                <li><strong>Soft costs represent 40-60%</strong> of total project development expenses</li>
+                <li><strong>Growing regulatory pressure</strong> for corporate decarbonization and ESG compliance</li>
+                <li><strong>Energy resilience</strong> becoming critical business continuity requirement</li>
+            </ul>
+            
+            <div class="value-prop">
+                <h3>Core Value Proposition</h3>
+                <p>"The first generative AI-powered Expert Agent SaaS solution that analyzes organizational energy consumption profiles and recommends highly optimized DER solutions in hours instead of months."</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Target Use Cases</h2>
+        </div>
+        <div class="section-content">
+            <div class="user-persona">
+                <h3>Primary: C&I Facility Owners/Operators</h3>
+                <p><strong>Who:</strong> Facility Managers, CFOs, Sustainability Officers, Business Owners</p>
+                <p><strong>Goal:</strong> Reduce operational costs, meet ESG targets, improve energy resilience</p>
+                <p><strong>Pain:</strong> "The DER evaluation process is a black box that takes months and costs too much upfront"</p>
+            </div>
+            
+            <div class="user-persona">
+                <h3>Secondary: Energy Analysts/Consultants</h3>
+                <p><strong>Who:</strong> Internal energy engineers, financial analysts, consulting partners</p>
+                <p><strong>Goal:</strong> Efficiently manage project portfolios, deliver quality reports faster</p>
+                <p><strong>Pain:</strong> "Manual data collection and custom financial modeling is repetitive and time-consuming"</p>
+            </div>
+            
+            <div class="user-persona">
+                <h3>Tertiary: Demo/Prospect Users</h3>
+                <p><strong>Who:</strong> Potential clients evaluating the platform</p>
+                <p><strong>Goal:</strong> Understand platform capabilities without commitment</p>
+                <p><strong>Pain:</strong> "Need to see the output quality before investing time in data entry"</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Proposed Solution</h2>
+        </div>
+        <div class="section-content">
+            <div class="solution-highlight">
+                <strong>An AI-powered, web-based SaaS platform that guides users through intelligent data collection and delivers institutional-grade DER feasibility studies with 30% conceptual designs and financial projections.</strong>
+            </div>
+            
+            <h3>Top 3 MVP Value Props:</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>🔋 The Vitamin</h4>
+                    <p>Comprehensive DER system analysis covering solar, CHP, storage, fuel cells, and nuclear options with automated specifications and balance of plant design</p>
+                </div>
+                <div class="metric-card">
+                    <h4>💊 The Painkiller</h4>
+                    <p>Eliminate months of waiting and $50K+ consulting fees - get institutional-grade feasibility study in hours for fraction of traditional cost</p>
+                </div>
+                <div class="metric-card">
+                    <h4>💉 The Steroid</h4>
+                    <p>AI-powered recommendation engine analyzing thousands of system configurations with real-time financial modeling and decarbonization impact analysis</p>
+                </div>
+            </div>
+            
+            <div class="workflow-diagram">
+                <h3>Core User Journey</h3>
+                <div style="margin: 20px 0;">
+                    <div class="workflow-step">Data Input</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">AI Analysis</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">System Design</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">Financial Model</div>
+                    <span class="workflow-arrow">→</span>
+                    <div class="workflow-step">Report Generation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Technology Stack</h2>
+        </div>
+        <div class="section-content">
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h4>Frontend Framework</h4>
+                    <div class="tech-item">React 18.2.0</div>
+                    <div class="tech-item">TypeScript 5.2.2</div>
+                    <div class="tech-item">Vite 5.2.0</div>
+                </div>
+                <div class="tech-category">
+                    <h4>UI & Styling</h4>
+                    <div class="tech-item">Material-UI (MUI)</div>
+                    <div class="tech-item">Tailwind CSS 3.4.3</div>
+                    <div class="tech-item">React Icons</div>
+                </div>
+                <div class="tech-category">
+                    <h4>State & Routing</h4>
+                    <div class="tech-item">React Context API</div>
+                    <div class="tech-item">React Router DOM 6.23.1</div>
+                    <div class="tech-item">js-cookie (persistence)</div>
+                </div>
+                <div class="tech-category">
+                    <h4>Development Tools</h4>
+                    <div class="tech-item">ESLint</div>
+                    <div class="tech-item">Prettier</div>
+                    <div class="tech-item">React Toastify</div>
+                </div>
+            </div>
+            
+            <div class="architecture-diagram">
+                <h3>Application Architecture</h3>
+                <div class="layer">
+                    <strong>Presentation Layer:</strong> React Components + MUI + Tailwind CSS
+                </div>
+                <div class="layer">
+                    <strong>State Management:</strong> Context API + Specialized Form Contexts
+                </div>
+                <div class="layer">
+                    <strong>Routing & Navigation:</strong> React Router + Role-based Access Control
+                </div>
+                <div class="layer">
+                    <strong>Data Persistence:</strong> Cookie-based Session + Future Backend Integration
+                </div>
+                <div class="layer">
+                    <strong>Future Backend:</strong> AI Analysis Engine + File Storage + Database
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Goals & Success Metrics</h2>
+        </div>
+        <div class="section-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Goals</th>
+                        <th>Signals</th>
+                        <th>Metrics</th>
+                        <th>Targets (Y1)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>User Engagement</strong></td>
+                        <td>Users complete workflow</td>
+                        <td>Funnel completion rate<br>Time to complete workflow</td>
+                        <td>>75% completion rate<br><60 minutes average</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Adoption</strong></td>
+                        <td>Active paying customers</td>
+                        <td>Monthly active domains<br>Demo-to-client conversion</td>
+                        <td>>500 active domains<br>>15% conversion rate</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Platform Utilization</strong></td>
+                        <td>Report generation volume</td>
+                        <td>Reports generated/month<br>Repeat usage rate</td>
+                        <td>>1000 reports/month<br>>40% repeat usage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Satisfaction</strong></td>
+                        <td>User feedback quality</td>
+                        <td>Net Promoter Score<br>Support ticket volume</td>
+                        <td>NPS >50<br><5% users need support</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Requirements</h2>
+        </div>
+        <div class="section-content">
+            <p>Requirements are organized by critical user journeys for the Client workflow (primary use case):</p>
+            
+            <h3>Authentication & Access Control</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Requirement</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Multi-role Authentication</td>
+                        <td>Support Client, Analyst, and Demo user types with role-based routing</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Credential-less Demo Access</td>
+                        <td>Immediate demo access via single button click on login page</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Session Persistence</td>
+                        <td>Maintain user session and workflow progress across browser sessions</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p1">P1</span></td>
+                        <td>User Registration</td>
+                        <td>New user signup with email validation</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Client Workflow - Data Collection Journey</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Priority</th>
+                        <th>Key Requirements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Organizational Profile</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Company details, industry, annual energy spend, facility operations, address collection</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Energy Profile</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Electric/gas bill upload, interval data handling, LOA generation, thermal needs assessment</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Goals & Priorities</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Priority ranking (financial vs. environmental), investment goal setting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Site Assessment</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Location confirmation, site characteristics, solar suitability, drawing uploads</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Financial Information</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Ownership preference (Own vs. Third-party PPA), financing options, existing contracts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6-7. Processing</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Data verification status, analysis progress indicators</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8. Recommendations</strong></td>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Interactive visualizations, financial projections, downloadable reports</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Navigation & Progress Management</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Requirement</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Visual Progress Tracking</td>
+                        <td>Sidebar showing all 8 steps with completion status and current position</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Sub-step Navigation</td>
+                        <td>Horizontal stepper showing sub-steps within current main step</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Non-linear Navigation</td>
+                        <td>Users can click back to any previously visited step</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Conditional Branching</td>
+                        <td>Dynamic form routing based on ownership preference selection</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p1">P1</span></td>
+                        <td>Progress Persistence</td>
+                        <td>Save user progress at each step completion</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Analyst Dashboard</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Requirement</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Project Overview</td>
+                        <td>Dashboard showing all client projects with status and progress</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Project Management</td>
+                        <td>Detailed project view with client data and analysis controls</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p1">P1</span></td>
+                        <td>Resource Library</td>
+                        <td>Shared documents and tools for analysts</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p1">P1</span></td>
+                        <td>Account Settings</td>
+                        <td>Analyst profile and preference management</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Demo Experience</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Requirement</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Standalone Demo</td>
+                        <td>Completely isolated demo workflow with no dependencies on client data</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p0">P0</span></td>
+                        <td>Interactive Preview</td>
+                        <td>Editable table with real-time graph updates showcasing analysis capabilities</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-p1">P1</span></td>
+                        <td>Demo-to-Client Conversion</td>
+                        <td>Clear call-to-action to transition from demo to full client signup</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Non-Goals</h2>
+        </div>
+        <div class="section-content">
+            <ul>
+                <li><strong>Detailed Engineering Design:</strong> Platform provides 30% conceptual designs, not final engineering drawings</li>
+                <li><strong>Project Financing:</strong> Financial projections only; not a financing marketplace or lender platform</li>
+                <li><strong>Construction Management:</strong> Analysis and recommendation only; no project execution tools</li>
+                <li><strong>Multi-site Portfolio Management:</strong> Single facility focus for MVP; portfolio features in future releases</li>
+                <li><strong>Real-time Energy Monitoring:</strong> Feasibility analysis tool, not an operational energy management system</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Future Backend Integration Points</h2>
+        </div>
+        <div class="section-content">
+            <p>While the current implementation is frontend-heavy, the following backend services will need integration:</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>🔐 Authentication Service</h4>
+                    <p>Replace hardcoded credentials with secure user management, JWT tokens, and password recovery</p>
+                </div>
+                <div class="metric-card">
+                    <h4>💾 Data Persistence Layer</h4>
+                    <p>Database integration for storing user profiles, project data, and analysis results</p>
+                </div>
+                <div class="metric-card">
+                    <h4>📁 File Storage Service</h4>
+                    <p>Secure upload and storage for utility bills, site drawings, and generated reports</p>
+                </div>
+                <div class="metric-card">
+                    <h4>🤖 AI Analysis Engine</h4>
+                    <p>Core AI service for DER system optimization, financial modeling, and report generation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="section-header">
+            <h2>Appendix</h2>
+        </div>
+        <div class="section-content">
+            <h3>Technical Considerations</h3>
+            <ul>
+                <li><strong>Performance:</strong> Lazy loading of step components to minimize initial bundle size</li>
+                <li><strong>Accessibility:</strong> MUI components provide WCAG compliance foundation</li>
+                <li><strong>Browser Support:</strong> Modern browsers with ES2018+ support</li>
+                <li><strong>Responsive Design:</strong> Mobile-first approach with Tailwind CSS utilities</li>
+            

@@ -1,4 +1,4 @@
-# [Bradley.ai™](https://der-labs-iq.vercel.app/bradley)
+# [Bradley.ai™](https://der-labs-iq.vercel.app/login/bradley)
 **Product Requirements Document for Bradley.ai MVP**
 
 ---
